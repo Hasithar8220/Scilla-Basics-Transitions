@@ -1,0 +1,5 @@
+The transaction id is: 1d4770adb3fc509300b39c3e70edee9560bb12dc05f6cbbc917cb00c69459046
+Waiting transaction be confirmed
+The transaction status is:
+{ cumulative_gas: 2559, epoch_num: '1264292', success: true }
+Contract address is: 9cfc41804c0567868faf22f6a4ddf9c1338d99d0

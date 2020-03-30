@@ -1,0 +1,39 @@
+scilla_version 0
+
+    (* Freelancer contract *)
+    import ListUtils
+    (***************************************************)
+    (*               Associated library                *)
+    (***************************************************)
+
+    library Freelancer
+    let not_owner_code = Int32 1
+    let set_status_code = Int32 2
+
+    (***************************************************)
+    (*             The contract definition             *)
+    (***************************************************)
+    
+    contract Freelancer
+    (owner: ByStr20)
+
+    field status : String = ""
+
+    transition setStatus (msg : String)
+      is_owner = builtin eq owner _sender;
+      match is_owner with
+      | False =>
+        e = {_eventname : "setStatus()"; code : not_owner_code};
+        event e
+      | True =>
+        status := msg;
+        e = {_eventname : "setStatus()"; code : set_status_code};
+        event e
+      end
+    end
+
+    transition getStatus ()
+        r <- status;
+        e = {_eventname: "getStatus()"; msg: r};
+        event e
+    end
